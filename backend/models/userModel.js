@@ -13,6 +13,14 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, "Adicione uma senha"],
     },
+    gender:{
+        type: String,
+        required: [true, "Adicione o gênero"],
+    },
+    state:{
+        type: String,
+        required: [true, "Adicione o código UF"],
+    },
     isAdmin:{
         type: Boolean,
         required: true,
