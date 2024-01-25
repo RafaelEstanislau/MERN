@@ -5,6 +5,8 @@ import Header from "./components/Header"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
+import NewAgenda from "./pages/NewAgenda"
+import PrivateRoute from "./components/PrivateRoute"
 function App() {
   return (
     <>
@@ -15,6 +17,9 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/registrar" element={<Register />}/>
+          <Route path="/nova-agenda" element={<PrivateRoute />}>
+            <Route path="/nova-agenda" element={<NewAgenda/>}/>
+          </Route>
         </Routes>
       </div>
     </Router>

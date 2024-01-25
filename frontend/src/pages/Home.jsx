@@ -8,7 +8,7 @@ function Home() {
         <h1>Gerencie sua agenda de vacinação</h1>
         <p>Escolha uma das opções abaixo</p>
       </section>
-      <Link to="/nova-vacina" className="btn btn-reverse btn-block">
+      <Link to="/nova-agenda" className="btn btn-reverse btn-block">
         <FaQuestionCircle /> Cadastrar uma nova vacina
       </Link>
       <Link to="/vacinas" className="btn btn-block">

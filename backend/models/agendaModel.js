@@ -17,7 +17,7 @@ const agendaSchema = mongoose.Schema({
     },
     dataSituacao:{
         type: Date,
-        required: [true, "Adicione o gênero"],
+        required: false,
     },
     observacoes:{
         type: String,
