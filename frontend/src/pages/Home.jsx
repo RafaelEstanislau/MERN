@@ -9,10 +9,10 @@ function Home() {
         <p>Escolha uma das opções abaixo</p>
       </section>
       <Link to="/nova-agenda" className="btn btn-reverse btn-block">
-        <FaQuestionCircle /> Cadastrar uma nova vacina
+        <FaQuestionCircle /> Cadastrar uma nova agenda
       </Link>
-      <Link to="/vacinas" className="btn btn-block">
-        <FaTicketAlt /> Ver minhas vacinas
+      <Link to="/agendas" className="btn btn-block">
+        <FaTicketAlt /> Ver minhas agendas
       </Link>
     </>
   )

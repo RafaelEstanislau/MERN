@@ -7,6 +7,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import NewAgenda from "./pages/NewAgenda"
 import PrivateRoute from "./components/PrivateRoute"
+import Agendas from "./pages/Agendas"
 function App() {
   return (
     <>
@@ -19,6 +20,9 @@ function App() {
           <Route path="/registrar" element={<Register />}/>
           <Route path="/nova-agenda" element={<PrivateRoute />}>
             <Route path="/nova-agenda" element={<NewAgenda/>}/>
+          </Route>
+          <Route path="/agendas" element={<PrivateRoute />}>
+            <Route path="/agendas" element={<Agendas/>}/>
           </Route>
         </Routes>
       </div>

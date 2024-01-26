@@ -237,19 +237,19 @@ h3 {
   text-align: center;
 }
 
-.status-new {
+.status-Agendado {
   background-color: green;
   color: #fff;
   border-radius: 10px;
 }
 
-.status-open {
+.status-Realizado {
   background-color: steelblue;
   color: #fff;
   border-radius: 10px;
 }
 
-.status-closed {
+.status-Cancelado {
   background-color: darkred;
   color: #fff;
   border-radius: 10px;

@@ -4,6 +4,6 @@ import agendaReducer from "../features/agendas/agendaSlice"
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    agenda: agendaReducer
+    agendas: agendaReducer
   },
 });

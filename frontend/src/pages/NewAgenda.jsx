@@ -4,20 +4,42 @@ import { useNavigate } from "react-router-dom"
 import {toast} from "react-toastify"
 import { createAgenda, reset } from "../features/agendas/agendaSlice"
 import Spinner from "../components/Spinner"
+import BackButton from "../components/BackButton"
 
 
 function NewAgenda() {
   const {user} = useSelector((state) => state.auth)
-  const {isLoading, isError, isSuccess, message} = useSelector((state) => state.agenda)
+  const {isError, isSuccess, message} = useSelector((state) => state.agendas)
   const [name, setName] = useState(user.name)
   const [email, setEmail] = useState(user.email)
   const [data, setData] = useState(new Date())
 
-  const onSubmit = (e) =>{
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
+  useEffect(() =>{
+    if(isError)
+    toast.error(message)
+    
+    if(isSuccess){
+      dispatch(reset())
+      navigate("/agendas")
+    }
+
+    dispatch(reset())
+  }, [dispatch, isError, isSuccess, navigate, message])
+
+  const onSubmit = (e) =>{
+    e.preventDefault()
+    dispatch(createAgenda({data}))
   }
+
+
+  
+  
   return (
     <>
+      <BackButton url= "/" />
       <section className="heading">
         <h1>Cria uma nova agenda</h1>
         <p>Por favor preencha o formulário abaixo</p>
