@@ -8,6 +8,8 @@ import Register from "./pages/Register"
 import NewAgenda from "./pages/NewAgenda"
 import PrivateRoute from "./components/PrivateRoute"
 import Agendas from "./pages/Agendas"
+import Agenda from "./pages/Agenda"
+
 function App() {
   return (
     <>
@@ -23,6 +25,9 @@ function App() {
           </Route>
           <Route path="/agendas" element={<PrivateRoute />}>
             <Route path="/agendas" element={<Agendas/>}/>
+          </Route>
+          <Route path="/agenda/:agendaId" element={<PrivateRoute />}>
+            <Route path="/agenda/:agendaId" element={<Agenda/>}/>
           </Route>
         </Routes>
       </div>

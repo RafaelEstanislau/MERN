@@ -25,10 +25,48 @@ const getAgendas = async (token) => {
     console.log(response);
     return response.data
 }
+const getAgenda = async (agendaId,token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.get(API_URL + agendaId, config)
+    console.log(response);
+    return response.data
+}
+
+const closeAgenda = async (agendaId,token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.put(API_URL + agendaId,{situacao: "Cancelado"}, config)
+    console.log(response);
+    return response.data
+}
+
+const completeAgenda = async (agendaId,token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.put(API_URL + agendaId,{situacao: "Realizado"}, config)
+    console.log(response);
+    return response.data
+}
+
 
 const agendaService = {
     createAgenda,
-    getAgendas
+    getAgendas,
+    getAgenda,
+    closeAgenda
 }
 
 export default agendaService

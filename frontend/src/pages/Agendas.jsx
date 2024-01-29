@@ -9,7 +9,7 @@ const Agendas = () => {
 
     const {agendas, isLoading, isSuccess} = useSelector((state) => state.agendas)
     const dispatch = useDispatch()
-
+    console.log(agendas);
     useEffect(() =>{
         return () =>{
             if(isSuccess)
@@ -31,11 +31,15 @@ const Agendas = () => {
       <div className="tickets">
         <div className="ticket-headings">
             <div>Data</div>
-            <div>Status</div>
-            <div>{agendas.map((agenda) => (
-                <AgendaItem key={agenda._id} agenda={agenda}/>
-            ))}</div>
+            <div>Situacao</div>
+            <div></div>
         </div>
+            <div>
+              {agendas.map((agenda) => (
+                <AgendaItem key={agenda._id} agenda={agenda}/>
+            ))}
+            </div>
+        
       </div>
     </>
   )

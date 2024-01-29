@@ -39,6 +39,51 @@ export const getAgendas = createAsyncThunk(
     }
 })
 
+export const getAgenda = createAsyncThunk(
+    "agendas/get", 
+    async (agendaId, thunkApi) =>{
+    try {
+        const token = thunkApi.getState().auth.user.token
+        return await agendaService.getAgenda(agendaId,token)
+    } catch (error) {
+        const message = (error.response && 
+                        error.response.data &&
+                        error.response.data.message)||
+                        error.message || error.toString()
+        return thunkApi.rejectWithValue(message)
+    }
+})
+
+export const closeAgenda = createAsyncThunk(
+    "agendas/close", 
+    async (agendaId, thunkApi) =>{
+    try {
+        const token = thunkApi.getState().auth.user.token
+        return await agendaService.closeAgenda(agendaId,token)
+    } catch (error) {
+        const message = (error.response && 
+                        error.response.data &&
+                        error.response.data.message)||
+                        error.message || error.toString()
+        return thunkApi.rejectWithValue(message)
+    }
+})
+
+export const completeAgenda = createAsyncThunk(
+    "agendas/complete", 
+    async (agendaId, thunkApi) =>{
+    try {
+        const token = thunkApi.getState().auth.user.token
+        return await agendaService.completeAgenda(agendaId,token)
+    } catch (error) {
+        const message = (error.response && 
+                        error.response.data &&
+                        error.response.data.message)||
+                        error.message || error.toString()
+        return thunkApi.rejectWithValue(message)
+    }
+})
+
 export const agendaSlice = createSlice({
     name: "agenda",
     initialState,
@@ -71,6 +116,27 @@ export const agendaSlice = createSlice({
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
+            })
+            .addCase(getAgenda.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getAgenda.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.agenda = action.payload
+            })
+            .addCase(getAgenda.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(closeAgenda.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.agendas.map((agenda) => agenda._id === action.payload._id ? (agenda.situacao = "Cancelado") : agenda)
+            })
+            .addCase(completeAgenda.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.agendas.map((agenda) => agenda._id === action.payload._id ? (agenda.situacao = "Realizado") : agenda)
             })
     }
 })
