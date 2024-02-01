@@ -6,6 +6,7 @@ function AgendaItem({agenda}) {
       <div className={`status status-${agenda.situacao}`}>
         {agenda.situacao}
       </div>
+      <div>{agenda.vacinaId}</div>
       <Link to={`/agenda/${agenda._id}`} className="btn btn-reverse btn-sm">
         Abrir
       </Link>

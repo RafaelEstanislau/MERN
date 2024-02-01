@@ -35,14 +35,23 @@ const getAgenda = asyncHandler(async (req, res) => {
 })
 
 const createAgendas = asyncHandler(async (req, res) => {
-    const { data } = req.body
+    const dadosDaAgenda  = req.body.dadosDaAgenda
+    const teste = {
+        user: req.user.id,
+        situacao: "Agendado",
+        data: dadosDaAgenda.data,
+        vacinaId: dadosDaAgenda.vacinaId
+    }
+    console.log(teste);
     const agenda = await Agenda.create({
         user: req.user.id,
         situacao: "Agendado",
-        data,
+        data: dadosDaAgenda.data,
+        vacinaId: dadosDaAgenda.vacinaId
 
         
     })
+    console.log(agenda);
     res.status(201).json(agenda)
 })
 

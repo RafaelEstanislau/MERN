@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react"
-import {useNavigate} from "react-router-dom"
-import { toast } from "react-toastify"
-import { FaUser } from "react-icons/fa"
-import {useSelector, useDispatch} from "react-redux"
-import {register, reset} from "../features/auth/authSlice"
-import Spinner from "../components/Spinner"
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { FaUser } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { register, reset } from "../features/auth/authSlice";
+import Spinner from "../components/Spinner";
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -12,48 +12,53 @@ function Register() {
         email: "",
         password: "",
         password2: "",
-        gender: "", 
-        state: ""   
-    })
-    const { name, email, password, password2, gender, state } = formData
+        gender: "",
+        state: "",
+        allergies: "",  // Agora só temos o campo para alergias
+    });
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const {user, isLoading, isError, isSuccess, message} = 
-    useSelector(state => state.auth)
+    const { name, email, password, password2, gender, state, allergies } = formData;
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        if(isError){
-            toast.error(message)
+        if (isError) {
+            toast.error(message);
         }
-        if(isSuccess || user){
-            navigate("/")
+        if (isSuccess || user) {
+            navigate("/");
         }
-        dispatch(reset())
-    }, [isError, isSuccess, user, message, navigate, dispatch])
+        dispatch(reset());
+    }, [isError, isSuccess, user, message, navigate, dispatch]);
 
     const handleChange = (e) => {
+        const { name, value } = e.target;
+
         setFormData((prevState) => ({
             ...prevState,
-            [e.target.name]: e.target.value,
-        }))
-    }
+            [name]: value,
+        }));
+    };
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         if (password !== password2) {
-            toast.error("Confirmação da senha e senha devem ser iguais")
-        }else{
+            toast.error("Confirmação da senha e senha devem ser iguais");
+        } else {
             const userData = {
                 name,
                 email,
                 password,
                 gender,
-                state
-            }
-            dispatch(register(userData))
+                state,
+                allergies,
+            };
+            dispatch(register(userData));
         }
-    }
+    };
+
     const estadosBrasileiros = [
         { uf: 'AC', nome: 'Acre' },
         { uf: 'AL', nome: 'Alagoas' },
@@ -82,18 +87,17 @@ function Register() {
         { uf: 'SP', nome: 'São Paulo' },
         { uf: 'SE', nome: 'Sergipe' },
         { uf: 'TO', nome: 'Tocantins' }
-      ];
-      
+    ];
 
-    if(isLoading){
-        return <Spinner />
+    if (isLoading) {
+        return <Spinner />;
     }
 
     return (
         <>
             <section className="heading">
                 <h1>
-                    <FaUser /> Registrar 
+                    <FaUser /> Registrar
                 </h1>
                 <p>Crie sua conta</p>
             </section>
@@ -108,7 +112,8 @@ function Register() {
                             value={name}
                             onChange={handleChange}
                             placeholder="Insira seu nome"
-                            required />
+                            required
+                        />
                     </div>
                     <div className="form-group">
                         <input
@@ -119,7 +124,8 @@ function Register() {
                             value={email}
                             onChange={handleChange}
                             placeholder="Insira seu email"
-                            required />
+                            required
+                        />
                     </div>
                     <div className="form-group">
                         <input
@@ -130,7 +136,8 @@ function Register() {
                             value={password}
                             onChange={handleChange}
                             placeholder="Insira sua senha"
-                            required />
+                            required
+                        />
                     </div>
                     <div className="form-group">
                         <input
@@ -141,7 +148,8 @@ function Register() {
                             value={password2}
                             onChange={handleChange}
                             placeholder="Confirme sua senha"
-                            required />
+                            required
+                        />
                     </div>
                     <div className="form-group">
                         <select
@@ -175,6 +183,16 @@ function Register() {
                         </select>
                     </div>
                     <div className="form-group">
+                        <textarea
+                            className="form-control"
+                            id="allergies"
+                            name="allergies"
+                            value={allergies}
+                            onChange={handleChange}
+                            placeholder="Insira suas alergias"
+                        />
+                    </div>
+                    <div className="form-group">
                         <button className="btn btn-block">
                             Enviar
                         </button>
@@ -182,7 +200,7 @@ function Register() {
                 </form>
             </section>
         </>
-    )
+    );
 }
 
-export default Register
+export default Register;

@@ -43,6 +43,8 @@ function Agenda() {
     <header className="ticket-header">
         <BackButton url="/agendas"/>
         <h2>Agenda ID: {agenda._id}
+        </h2>
+        <h2>Vacina ID: {agenda.vacinaId}
         <span className={`status status-${agenda.situacao}`}>
             {agenda.situacao}
         </span>

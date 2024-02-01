@@ -28,17 +28,14 @@ const Vacina = require("../models/vacinaModel")
 
 const registerVacina = asyncHandler(async (req, res) => {
     const vacinaData  = req.body.vacinaData
-    console.log(vacinaData);
     const teste = {
         titulo: vacinaData.titulo,
         doses: vacinaData.doses,
     }
-    console.log(teste);
     const vacina = await Vacina.create({
         titulo: vacinaData.titulo,
         doses: vacinaData.doses,
     })
-    console.log(vacina);
     res.status(201).json(vacina)
 })
 const getVacina = asyncHandler(async (req, res) => {

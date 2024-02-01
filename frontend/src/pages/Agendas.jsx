@@ -32,6 +32,7 @@ const Agendas = () => {
         <div className="ticket-headings">
             <div>Data</div>
             <div>Situacao</div>
+            <div>Vacina ID</div>
             <div></div>
         </div>
             <div>

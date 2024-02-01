@@ -47,9 +47,14 @@ function NewAgenda() {
     dispatch(reset())
   }, [dispatch, isError, isSuccess, navigate, message])
 
+
+  const dadosDaAgenda ={
+    data: data,
+    vacinaId: vacinaId
+  }
   const onSubmit = (e) => {
     e.preventDefault()
-    dispatch(createAgenda({ data }))
+    dispatch(createAgenda({ dadosDaAgenda }))
   }
 
 

@@ -1,36 +1,37 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+
 const agendaSchema = mongoose.Schema({
-    user:{
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "User"
     },
-    vacina:{
+    vacinaId: { // Renomeado para vacinaId
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "Vacina"
     },
-    data:{
+    data: {
         type: Date,
         required: [true, "Adicione uma data para o agendamento"],
     },
-    situacao:{
+    situacao: {
         type: String,
         required: true,
         enum: ['Agendado', 'Cancelado', 'Realizado'],
         default: 'Agendado'
     },
-    dataSituacao:{
+    dataSituacao: {
         type: Date,
         required: false,
     },
-    observacoes:{
+    observacoes: {
         type: String,
         required: false,
     }
-    
 },
 {
     timestamps: true,
-})
-module.exports = mongoose.model("Agenda", agendaSchema)
+});
+
+module.exports = mongoose.model("Agenda", agendaSchema);
