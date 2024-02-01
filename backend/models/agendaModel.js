@@ -5,6 +5,11 @@ const agendaSchema = mongoose.Schema({
         required: true,
         ref: "User"
     },
+    vacina:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Vacina"
+    },
     data:{
         type: Date,
         required: [true, "Adicione uma data para o agendamento"],

@@ -20,7 +20,7 @@ function NewVacina() {
     
     if(isSuccess){
       dispatch(reset())
-      navigate("/vacinas")
+      navigate("/")
     }
 
     dispatch(reset())
