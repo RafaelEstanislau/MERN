@@ -66,7 +66,8 @@ const agendaService = {
     createAgenda,
     getAgendas,
     getAgenda,
-    closeAgenda
+    closeAgenda,
+    completeAgenda
 }
 
 export default agendaService

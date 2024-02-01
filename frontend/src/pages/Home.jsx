@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom"
-import {FaQuestionCircle, FaTicketAlt} from "react-icons/fa"
+import {FaQuestionCircle, FaTicketAlt, FaClinicMedical} from "react-icons/fa"
 
 function Home() {
   return (
@@ -13,6 +13,9 @@ function Home() {
       </Link>
       <Link to="/agendas" className="btn btn-block">
         <FaTicketAlt /> Ver minhas agendas
+      </Link>
+      <Link to="/nova-vacina" className="btn btn-reverse btn-block">
+        <FaClinicMedical /> Cadastrar uma nova vacina
       </Link>
     </>
   )

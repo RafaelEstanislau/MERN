@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
-import { getAgenda, reset, closeAgenda } from "../features/agendas/agendaSlice"
+import { getAgenda, reset, closeAgenda, completeAgenda} from "../features/agendas/agendaSlice"
 import BackButton from "../components/BackButton"
 import Spinner from "../components/Spinner"
 import { useParams, useNavigate } from "react-router-dom"
@@ -53,7 +53,7 @@ function Agenda() {
     {agenda.situacao !== "Cancelado" &&(
         <button onClick={onAgendaClose} className="btn btn-block btn-danger">Cancelar agenda</button>
     )}
-    {agenda.situacao === "Realizado" && (
+    {agenda.situacao !== "Realizado" && (
         <button onClick={onAgendaComplete} className="btn btn-block btn-success">Marcar como realizado</button>
     )}
   </div>

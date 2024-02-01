@@ -9,6 +9,7 @@ import NewAgenda from "./pages/NewAgenda"
 import PrivateRoute from "./components/PrivateRoute"
 import Agendas from "./pages/Agendas"
 import Agenda from "./pages/Agenda"
+import NewVacina from "./pages/NewVacina"
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
           <Route path="/registrar" element={<Register />}/>
           <Route path="/nova-agenda" element={<PrivateRoute />}>
             <Route path="/nova-agenda" element={<NewAgenda/>}/>
+          </Route>
+          <Route path="/nova-vacina" element={<PrivateRoute />}>
+            <Route path="/nova-vacina" element={<NewVacina/>}/>
           </Route>
           <Route path="/agendas" element={<PrivateRoute />}>
             <Route path="/agendas" element={<Agendas/>}/>
